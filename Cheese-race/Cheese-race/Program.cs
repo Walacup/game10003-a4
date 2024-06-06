@@ -3,11 +3,13 @@ using System.Numerics;
 
 public class Program
 {
-    // If you need variables in the Program class (outside functions), you must mark them as static
     static string title = "Game Title"; // Window title
-    static int screenWidth = 800; // Screen width
-    static int screenHeight = 600; // Screen height
+    static int screenWidth = 1000; // Screen width
+    static int screenHeight = 800; // Screen height
     static int targetFps = 60; // Target frames-per-second
+
+    static Rectangle player; // Player's rectangle
+    static float playerSpeed = 5.0f; // Speed at which the player moves
 
     static void Main()
     {
@@ -23,7 +25,7 @@ public class Program
             // Enable drawing to the canvas (window)
             Raylib.BeginDrawing();
             // Clear the canvas with one color
-            Raylib.ClearBackground(Color.RayWhite);
+            Raylib.ClearBackground(Raylib_cs.Color.RayWhite);
             // Your game code here. This is a function YOU define.
             Update();
             // Stop drawing to the canvas, begin displaying the frame
@@ -35,11 +37,19 @@ public class Program
 
     static void Setup()
     {
-        // Your one-time setup code here
+        // Initialize the player's rectangle
+        player = new Rectangle(screenWidth / 2 - 25, screenHeight / 2 - 25, 50, 50);
     }
 
     static void Update()
     {
-        // Your game code run each frame here
+        // Move the player's rectangle based on input
+        if (Raylib.IsKeyDown(KeyboardKey.W)) player.Y -= playerSpeed;
+        if (Raylib.IsKeyDown(KeyboardKey.S)) player.Y += playerSpeed;
+        if (Raylib.IsKeyDown(KeyboardKey.A)) player.X -= playerSpeed;
+        if (Raylib.IsKeyDown(KeyboardKey.D)) player.X += playerSpeed;
+
+        // Draw the mouses body
+        Raylib.DrawRectangleRec(player, Raylib_cs.Color.Brown);
     }
 }
