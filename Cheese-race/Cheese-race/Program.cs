@@ -50,6 +50,7 @@ public class Program
         if (Raylib.IsKeyDown(KeyboardKey.D)) player.X += playerSpeed;
 
         // Draw the mouses body
-        Raylib.DrawRectangleRec(player, Raylib_cs.Color.Brown);
+        Raylib.DrawRectangleRec(player, Raylib_cs.Color.Gold);
+        Raylib.DrawText("THE GREAT CHEESE RACE", 200, 170, 50, Raylib_cs.Color.Black);
     }
 }
